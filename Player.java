@@ -1,7 +1,43 @@
-
+import java.util.ArrayList;
 
 public class Player {
-    public int playerID;
-    public String[] hand;
-    public String[] wonApples;
+    private int playerID;
+    private ArrayList<String> hand;
+    private ArrayList<String> wonApples;
+    private boolean judge;
+
+    public Player(int playerID){
+        this.playerID = playerID;
+        this.wonApples = null;
+        this.hand = null;
+        this.judge = false;
+    }
+
+    public int getPlayerID(){
+        return playerID;
+    }
+
+    public ArrayList<String> getHand(){
+        return hand;
+    }
+
+    public void drawCard(String card){
+        hand.add(card);
+    }
+
+    public void wonApples(String apple){
+        wonApples.add(apple);
+    }
+
+    public int numberOfWonApples(){
+        return wonApples.size();
+    }
+
+    public void setJudge(boolean isJudge){
+        judge = isJudge;
+    }
+
+    public boolean isJudge(){
+        return judge;
+    }
 }
