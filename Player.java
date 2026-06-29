@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public class Player {
+abstract class Player {
     private int playerID;
     private ArrayList<String> hand;
     private ArrayList<String> wonApples;
@@ -25,7 +25,7 @@ public class Player {
         hand.add(card);
     }
 
-    public void wonApples(String apple){
+    public void addWonApple(String apple){
         wonApples.add(apple);
     }
 
@@ -39,5 +39,9 @@ public class Player {
 
     public boolean isJudge(){
         return judge;
+    }
+
+    public void removeCardFromHand(int card){
+        hand.remove(card);
     }
 }

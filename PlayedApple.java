@@ -1,5 +1,3 @@
-
-
 public class PlayedApple {
     public int PlayerID;
     public String redApple;
