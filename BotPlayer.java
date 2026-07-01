@@ -7,11 +7,14 @@ public class BotPlayer extends Player {
         super(playerID);
     }
     
-    public void play(ArrayList<PlayedApple> apples){
+    public PlayedApple play(){
         String card = hand.get(0);
         removeCardFromHand(0);
         PlayedApple apple = new PlayedApple(playerID, card);
-        apples.add(apple);
+        return apple;
     }
     
+    public PlayedApple judge(ArrayList<PlayedApple> playedApples){
+        return playedApples.get(0);
+    }
 }
