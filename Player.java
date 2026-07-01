@@ -1,15 +1,15 @@
 import java.util.ArrayList;
 
 abstract class Player {
-    private int playerID;
-    private ArrayList<String> hand;
-    private ArrayList<String> wonApples;
-    private boolean judge;
+    protected int playerID;
+    protected ArrayList<String> hand;
+    protected ArrayList<String> wonApples;
+    protected boolean judge;
 
     public Player(int playerID){
         this.playerID = playerID;
-        this.wonApples = null;
         this.hand = null;
+        this.wonApples = null;
         this.judge = false;
     }
 
@@ -43,5 +43,9 @@ abstract class Player {
 
     public void removeCardFromHand(int card){
         hand.remove(card);
+    }
+
+    public void play(ArrayList<PlayedApple> apples){
+
     }
 }
