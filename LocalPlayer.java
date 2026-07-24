@@ -18,6 +18,7 @@ public class LocalPlayer extends Player {
         String card = hand.get(index-1);
         removeCardFromHand(index-1); 
         PlayedApple apple = new PlayedApple(playerID, card);
+        scanner.close();
         return apple;
     }   
 
@@ -28,6 +29,7 @@ public class LocalPlayer extends Player {
         int index = scanner.nextInt();
         System.out.println("You selected the card '" + playedApples.get(index-1).redApple + "' to win this round");
 
+        scanner.close();
         return playedApples.get(index-1);
     }
     
