@@ -20,7 +20,7 @@ public class DeckOfCards {
 		}
     }
 
-    public String removeTopCard() {
+    public String drawCard() {
         String card = this.deck.get(0);
         this.deck.remove(0);
         return card;

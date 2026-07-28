@@ -7,6 +7,7 @@ public class StateObject {
     private PlayedApple playedRed;
     private DeckOfCards redApples;
     private PlayedApple winningRed;
+    private ArrayList<Player> players;
     private boolean gameEnded;
     private int judgeID;
     private ArrayList<PlayedApple> playedApples;
@@ -52,6 +53,22 @@ public class StateObject {
 
     public PlayedApple winningRedGet(){
         return this.winningRed;
+    }
+
+    public ArrayList<Player> playersGet(){
+        return this.players;
+    }
+
+    public int getNumberOfPlayers(){
+        return this.players.size();
+    }
+
+    public Player playerGet(int i){
+        return this.players.get(i);
+    }
+
+    public void playersAdd(Player player){
+        this.players.add(player);
     }
 
     public boolean gameEndedGet(){
