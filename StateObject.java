@@ -95,8 +95,8 @@ public class StateObject {
         return this.playedApples;
     }
 
-    public void playedApplesAdd(PlayedApple playedApple){
-        this.playedApples.add(playedApple);
+    public void playedApplesSet(ArrayList<PlayedApple> playedApples){
+        this.playedApples = playedApples;
     }
 
 }

@@ -8,7 +8,7 @@ public class LocalPlayer extends Player {
         super(playerID);
     }
 
-    public PlayedApple play(){
+    @Override public void play(ArrayList<PlayedApple> apples){
         Scanner scanner = new Scanner(System.in);
         System.out.println("Please Select a card from your hand to play by typing a number");
 
@@ -19,10 +19,10 @@ public class LocalPlayer extends Player {
         removeCardFromHand(index-1); 
         PlayedApple apple = new PlayedApple(playerID, card);
         scanner.close();
-        return apple;
+        apples.add(apple);
     }   
 
-    public PlayedApple judge(ArrayList<PlayedApple> playedApples){
+    @Override public PlayedApple judge(ArrayList<PlayedApple> playedApples){
         Scanner scanner = new Scanner(System.in);
         System.out.println("Please select which card should win this round by typing a nunmber");
 

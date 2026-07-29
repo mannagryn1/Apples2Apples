@@ -48,4 +48,8 @@ abstract class Player {
     public void play(ArrayList<PlayedApple> apples){
 
     }
+
+    public PlayedApple judge(ArrayList<PlayedApple> playedApples){
+        return new PlayedApple(0, "Something went wrong");
+    }
 }
