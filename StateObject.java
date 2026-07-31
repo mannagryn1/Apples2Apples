@@ -11,6 +11,7 @@ public class StateObject {
     private boolean gameEnded;
     private int judgeID;
     private ArrayList<PlayedApple> playedApples;
+    private int wincon;
 
     public StateObject(DeckOfCards greenApples, DeckOfCards redApples){
         this.greenApple = null;
@@ -18,9 +19,11 @@ public class StateObject {
         this.playedRed = null;
         this.redApples = redApples;
         this.winningRed = null;
+        this.players = null;
         this.gameEnded = false;
         this.judgeID = -1;                  //no player will have ID -1, it is a placeholder until the correct ID can be set
         this.playedApples = null;
+        this.wincon = -1;
     }
     
     public void greenAppleSet(String greenApple){
@@ -97,6 +100,14 @@ public class StateObject {
 
     public void playedApplesSet(ArrayList<PlayedApple> playedApples){
         this.playedApples = playedApples;
+    }
+
+    public void winconSet(int wincon){
+        this.wincon = wincon;
+    }
+
+    public int winconGet(){
+        return this.wincon;
     }
 
 }

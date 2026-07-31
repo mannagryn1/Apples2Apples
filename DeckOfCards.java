@@ -9,7 +9,7 @@ public class DeckOfCards {
     private ArrayList<String> deck;
 
     public DeckOfCards(String file) throws Exception{
-        this.deck = new ArrayList<>(Files.readAllLines(Paths.get("./", file), StandardCharsets.ISO_8859_1));
+            this.deck = new ArrayList<>(Files.readAllLines(Paths.get("./" + file), StandardCharsets.ISO_8859_1));
     }
 
     public void shuffle() {
