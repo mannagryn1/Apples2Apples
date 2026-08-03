@@ -4,21 +4,31 @@ public class GamePhaseManager {
     StateObject stateObject;
     DeckOfCards redApples;
     DeckOfCards greenApples;
+    StartupPhase startupPhase;
+    RoundStartPhase roundStartPhase;
+    RoundEndPhase roundEndPhase;
+    JudgePhase judgePhase;
+    PlayPhase playPhase;
 
-    GamePhaseManager(){
-        try{
-            this.redApples = new DeckOfCards("redApples.txt");
-            this.greenApples = new DeckOfCards("greenApples.txt");
-        }
-        catch(Exception e){
-            System.out.println("Something went wrong when creating the decks in GamePhaseManager");
-        }
 
-        this.stateObject = new StateObject(this.greenApples, this.redApples);
+    GamePhaseManager(StateObject stateObject){
+        this.stateObject = stateObject;
+        this.startupPhase = new StartupPhase();
+        this.roundStartPhase = new RoundStartPhase();
+        this.roundEndPhase = new RoundEndPhase();
+        this.judgePhase = new JudgePhase();
+        this.playPhase = new PlayPhase();
     }
 
     public void mainLoop(){
-        
+        startupPhase.execute(stateObject);
+
+        while(!stateObject.gameEndedGet()){
+            roundStartPhase.execute(stateObject);
+            playPhase.execute(stateObject);
+            judgePhase.execute(stateObject);
+            roundEndPhase.execute(stateObject);
+        }
     }
     
 }

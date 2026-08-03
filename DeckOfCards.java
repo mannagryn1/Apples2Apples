@@ -8,8 +8,13 @@ import java.util.concurrent.ThreadLocalRandom;
 public class DeckOfCards {
     private ArrayList<String> deck;
 
-    public DeckOfCards(String file) throws Exception{
-            this.deck = new ArrayList<>(Files.readAllLines(Paths.get("./" + file), StandardCharsets.ISO_8859_1));
+    public DeckOfCards(String file){
+        try{    
+            this.deck = new ArrayList<>(Files.readAllLines(Paths.get("Apples2Apples/cardDecks/" + file), StandardCharsets.ISO_8859_1));
+        }
+        catch(Exception e){
+            System.out.println("Something went wrong when creating a deck of cards");
+        }
     }
 
     public void shuffle() {
