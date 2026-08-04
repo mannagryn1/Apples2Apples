@@ -8,8 +8,8 @@ abstract class Player {
 
     public Player(int playerID){
         this.playerID = playerID;
-        this.hand = null;
-        this.wonApples = null;
+        this.hand = new ArrayList<String>();
+        this.wonApples = new ArrayList<String>();
         this.judge = false;
     }
 

@@ -19,7 +19,7 @@ public class StateObject {
         this.playedRed = null;
         this.redApples = redApples;
         this.winningRed = null;
-        this.players = null;
+        this.players = new ArrayList<Player>();
         this.gameEnded = false;
         this.judgeID = -1;                  //no player will have ID -1, it is a placeholder until the correct ID can be set
         this.playedApples = null;

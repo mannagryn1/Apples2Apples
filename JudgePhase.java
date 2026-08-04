@@ -19,7 +19,7 @@ public class JudgePhase extends GamePhase {
         if(stateObject.judgeIDGet()<stateObject.getNumberOfPlayers()-1){
             stateObject.judgeIDSet((stateObject.judgeIDGet()+1));
         }
-        else if(stateObject.judgeIDGet() == stateObject.getNumberOfPlayers()){
+        else if(stateObject.judgeIDGet() == stateObject.getNumberOfPlayers()-1){
             stateObject.judgeIDSet(0);
         }
         else{

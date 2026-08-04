@@ -17,7 +17,7 @@ public class PlayPhase extends GamePhase {
             }
 
             Random rnd = ThreadLocalRandom.current();
-            for(int i = playedApples.size() ; i > 0 ; i--) {
+            for(int i = playedApples.size() -1 ; i > 0 ; i--) {
 				int index = rnd.nextInt(i+1);
 				PlayedApple a = playedApples.get(index); playedApples.set(index, playedApples.get(i)); playedApples.set(i, a); // SWAP
 			}
