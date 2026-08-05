@@ -6,12 +6,11 @@ import java.util.concurrent.ThreadLocalRandom;
 public class PlayPhase extends GamePhase {
 
         @Override void execute(StateObject stateObject){
-            System.out.println("This round's green apple is: " + stateObject.greenAppleGet());
 
             ArrayList<PlayedApple> playedApples = new ArrayList<>() ;
 
             for (int i = 0 ; i < stateObject.getNumberOfPlayers() ; i++){
-                if (!stateObject.playerGet(i).isJudge()){
+                if (!(stateObject.judgeIDGet() == i)){
                     stateObject.playerGet(i).play(playedApples);
                 }
             }

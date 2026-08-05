@@ -5,6 +5,7 @@ public class BotPlayer extends Player {
 
     public BotPlayer(int playerID) {
         super(playerID);
+        this.isBot = true;
     }
     
     @Override public void play(ArrayList<PlayedApple> apples){

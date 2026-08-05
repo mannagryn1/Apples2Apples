@@ -3,18 +3,23 @@ public class JudgePhase extends GamePhase {
 
     @Override void execute(StateObject stateObject){
 
+        //System.out.println("**********************************************************************");
+        //System.out.println("This rounds green apple was: " + stateObject.greenAppleGet());
+
         for (int i = 0 ; i < stateObject.getNumberOfPlayers() ; i++){
-            if (stateObject.playerGet(i).isJudge()){
-                System.out.println("You are the judge");
+            if (stateObject.judgeIDGet() == i){
+                continue;
             }
             else {
-                System.out.println("Player " + stateObject.judgeIDGet() + " is judging");
+                stateObject.playerGet(i).playerXIsJudging(stateObject.judgeIDGet());
             }
         }
 
         PlayedApple winningApple = stateObject.playerGet(stateObject.judgeIDGet()).judge(stateObject.playedApplesGet());
         
         stateObject.playerGet(winningApple.PlayerID).addWonApple(winningApple.redApple);
+
+        System.out.println("The winning apple this round was " + winningApple.redApple);
 
         if(stateObject.judgeIDGet()<stateObject.getNumberOfPlayers()-1){
             stateObject.judgeIDSet((stateObject.judgeIDGet()+1));

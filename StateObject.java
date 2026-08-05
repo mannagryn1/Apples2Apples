@@ -109,5 +109,4 @@ public class StateObject {
     public int winconGet(){
         return this.wincon;
     }
-
 }

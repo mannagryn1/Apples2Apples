@@ -12,5 +12,8 @@ public class RoundStartPhase extends GamePhase {
 
         stateObject.judgeIDSet(judgeID);
         stateObject.greenAppleSet(newGreen);
+
+        System.out.println("**********************************************************************");
+        System.out.println("This round's green apple is: " + stateObject.greenAppleGet());
     }
 }
