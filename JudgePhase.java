@@ -15,11 +15,15 @@ public class JudgePhase extends GamePhase {
             }
         }
 
+        for (int i = 0 ; i < stateObject.getNumberOfPlayers() ; i++){
+            stateObject.playerGet(i).presentPlayedApples(stateObject.playedApplesGet());
+        }
+
         PlayedApple winningApple = stateObject.playerGet(stateObject.judgeIDGet()).judge(stateObject.playedApplesGet());
         
         stateObject.playerGet(winningApple.PlayerID).addWonApple(winningApple.redApple);
 
-        System.out.println("The winning apple this round was " + winningApple.redApple);
+        System.out.println("\nThe winning apple this round was " + winningApple.redApple);
 
         if(stateObject.judgeIDGet()<stateObject.getNumberOfPlayers()-1){
             stateObject.judgeIDSet((stateObject.judgeIDGet()+1));

@@ -5,7 +5,6 @@ abstract class Player {
     protected ArrayList<String> hand;
     protected ArrayList<String> wonApples;
     protected boolean judge;
-    protected boolean isBot;
 
     public Player(int playerID){
         this.playerID = playerID;
@@ -54,11 +53,15 @@ abstract class Player {
         return new PlayedApple(0, "Something went wrong");
     }
 
-    public boolean isBot(){
-        return isBot;
-    }
-
     public void playerXIsJudging(int i){
         
+    }
+
+    public void presentPlayedApples(ArrayList<PlayedApple> playedApples){
+
+    }
+
+    public void presentGreenApple(String greenApple){
+
     }
 }

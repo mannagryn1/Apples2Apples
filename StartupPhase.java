@@ -12,6 +12,9 @@ public class StartupPhase extends GamePhase {
 
         decideWincon(stateObject);      //decide how many won apples are neede to win based on amount of players
 
+        stateObject.redApplesGet().shuffle();       //shuffle decks, must happen before drawing hands
+        stateObject.greenApplesGet().shuffle();
+
         for( int i = 0 ; i < stateObject.getNumberOfPlayers() ; i++){
             while (stateObject.playerGet(i).hand.size() < 7){ //loop through all players and keep drawing until each have 7 cards on hand
                 stateObject.playerGet(i).drawCard(stateObject.redApplesGet().drawCard());
@@ -21,6 +24,7 @@ public class StartupPhase extends GamePhase {
         Random rnd = ThreadLocalRandom.current();
         int judgeID = rnd.nextInt(stateObject.getNumberOfPlayers());
         stateObject.judgeIDSet(judgeID);            // randomize who starts as judge
+
 
     }
 
