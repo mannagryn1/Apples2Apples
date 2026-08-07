@@ -49,8 +49,7 @@ abstract class Player {
 
     }
 
-    public PlayedApple judge(ArrayList<PlayedApple> playedApples){
-        return new PlayedApple(0, "Something went wrong");
+    public void judge(ArrayList<PlayedApple> playedApples, StateObject stateObject){
     }
 
     public void playerXIsJudging(int i){

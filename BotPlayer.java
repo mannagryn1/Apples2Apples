@@ -14,7 +14,7 @@ public class BotPlayer extends Player {
         apples.add(apple);
     }
     
-    @Override public PlayedApple judge(ArrayList<PlayedApple> playedApples){
-        return playedApples.get(0);
+    @Override public void judge(ArrayList<PlayedApple> playedApples, StateObject stateObject){
+        stateObject.winningRedSet(playedApples.get(0));
     }
 }

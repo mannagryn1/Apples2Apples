@@ -2,7 +2,6 @@
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class LocalPlayer extends Player {
     
@@ -17,12 +16,27 @@ public class LocalPlayer extends Player {
             System.out.println("**********************************************************************");
             System.out.println("Your hand is: ");
 
-            for(int i = 0 ; i < hand.size() ; i++){
-                System.out.println("(" + (i+1) + ")    " + hand.get(i));
+            boolean validCardSelected = false;
+            String input = "";
+            while(!validCardSelected){
+                for(int i = 0 ; i < hand.size() ; i++){
+                    System.out.println("(" + (i+1) + ")    " + hand.get(i));
+                }
+                System.out.println("\nPlease Select a card from your hand to play by typing a number");
+        
+                input = br.readLine();
+                try{
+                    if ((Integer.parseInt(input) <=7 ) && (Integer.parseInt(input) >= 1)){
+                        validCardSelected = true;
+                    }
+                    else{
+                        System.out.println("\nPlease enter a number between 1 and 7\n");
+                    }
+                }
+                catch (NumberFormatException e){
+                    System.out.println("\nPlease enter a valid number\n");
+                }
             }
-            System.out.println("\nPlease Select a card from your hand to play by typing a number");
-
-            String input = br.readLine();
             int index = Integer.parseInt(input);
             System.out.println("\nYou played the card: " + hand.get(index-1) + "'");
  //           System.out.println("**********************************************************************");
@@ -36,26 +50,42 @@ public class LocalPlayer extends Player {
         }
     }   
 
-    @Override public PlayedApple judge(ArrayList<PlayedApple> playedApples){
+    @Override public void judge(ArrayList<PlayedApple> playedApples, StateObject stateObject){
 
         System.out.println("**********************************************************************");
         System.out.println("You are the judge!");
 
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        boolean checkValidInput = false;
+        String input = "";
 
-        System.out.println("\nPlease select which card should win this round by typing a nunmber");
-        int index;
         try{
-            String input = br.readLine();
-            index = Integer.parseInt(input);
+            BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+            while(!checkValidInput){
+                System.out.println("\nPlease select which card should win this round by typing a nunmber");
+
+                input = br.readLine();
+
+                try{
+                    if((Integer.parseInt(input) <= playedApples.size()) && (Integer.parseInt(input) >= 1)){
+                        checkValidInput = true;
+                    }
+                    else{
+                        System.out.println("\nPlease select one of the played cards\n");
+                    }
+                }
+                catch(NumberFormatException e){
+                    System.out.println("\nPlease enter a valid number\n");
+                }
+            }
+            int index = Integer.parseInt(input);
+
+            System.out.println("\nYou selected the card '" + playedApples.get(index-1).redApple + "' to win this round");
+    //        System.out.println("**********************************************************************");
+            stateObject.winningRedSet(playedApples.get(index));
         }
-        catch(Exception e){
-            index = -1;
+        catch (Exception e){
             System.out.println("Something went wrong while judging");
         }
-        System.out.println("\nYou selected the card '" + playedApples.get(index-1).redApple + "' to win this round");
-//        System.out.println("**********************************************************************");
-        return playedApples.get(index-1);
    }
 
    @Override public void playerXIsJudging(int i){
