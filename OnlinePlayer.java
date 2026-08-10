@@ -1,8 +1,17 @@
+import java.io.BufferedReader;
+import java.io.DataOutputStream;
+
 public class OnlinePlayer extends Player {
 
-    public OnlinePlayer(int playerID) {
+    public BufferedReader in;
+    public DataOutputStream out;
+
+    public OnlinePlayer(int playerID, BufferedReader in, DataOutputStream out) {
         super(playerID);
-        //TODO Auto-generated constructor stub
+        this.in = in;
+        this.out = out;
     }
+
+    // needs methods for play() judge() various displays
     
 }

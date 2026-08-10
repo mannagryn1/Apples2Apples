@@ -10,7 +10,6 @@ abstract class Player {
         this.playerID = playerID;
         this.hand = new ArrayList<String>();
         this.wonApples = new ArrayList<String>();
-        this.judge = false;
     }
 
     public int getPlayerID(){
@@ -33,14 +32,6 @@ abstract class Player {
         return wonApples.size();
     }
 
-    public void setJudge(boolean isJudge){
-        judge = isJudge;
-    }
-
-    public boolean isJudge(){
-        return judge;
-    }
-
     public void removeCardFromHand(int card){
         hand.remove(card);
     }
@@ -61,6 +52,14 @@ abstract class Player {
     }
 
     public void presentGreenApple(String greenApple){
+
+    }
+
+    public void presentWinningApple(PlayedApple winningRed){
+
+    }
+
+    public void presentWinner(int playerID){
 
     }
 }

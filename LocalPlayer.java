@@ -106,4 +106,12 @@ public class LocalPlayer extends Player {
     System.out.println("This round's green apple is: " + apple);
     
    }
+
+   @Override public void presentWinningApple(PlayedApple winningRed){
+    System.out.println("The winning apple this round was " + winningRed.redApple + ". It was played by Player " + winningRed.PlayerID);
+   }
+
+   @Override public void presentWinner(int winnerID){
+    System.out.println("Player " + winnerID + " has won the game!");
+   }
 }

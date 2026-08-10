@@ -27,7 +27,7 @@ public class Server {
     }
 
     void createOnlinePlayers(int numberOfOnlinePlayers){
-        OnlineManager onlineManager = new OnlineManager();
-        onlineManager.createOnlinePlayers(numberOfOnlinePlayers, stateObject, 2048); 
+        OnlineManager onlineManager = new OnlineManager(2048);
+        onlineManager.createOnlinePlayers(numberOfOnlinePlayers, stateObject); 
     }
 }

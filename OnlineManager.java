@@ -1,19 +1,34 @@
-import java.util.*; 
-import java.nio.charset.StandardCharsets; 
-import java.nio.file.*; 
-import java.io.*; 
+import java.io.BufferedReader;
+import java.io.DataOutputStream;
+import java.io.InputStreamReader;
 import java.net.*;
-import java.util.concurrent.*;
 
 
 public class OnlineManager {
     ServerSocket connection;
 
-    public OnlineManager(){
+    public OnlineManager(int ServerSocket){
+        try{
+            this.connection = new ServerSocket(ServerSocket);
+        }
+        catch (Exception e){
+            System.out.println("Something went wrong while connecting: " + e);
+        }
     }
 
-    public void createOnlinePlayers(int numberOfOnlinePlayers, StateObject stateObject, int socket){
-
+    public void createOnlinePlayers(int numberOfOnlinePlayers, StateObject stateObject){
+        try{
+            for (int i =1; i <= numberOfOnlinePlayers ; i++){
+                Socket socket = connection.accept();
+                BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+                DataOutputStream out = new DataOutputStream(socket.getOutputStream());
+                OnlinePlayer player = new OnlinePlayer(stateObject.getNumberOfPlayers(), in, out);
+                stateObject.playersAdd(player);
+            }
+        }
+        catch(Exception e){
+            System.out.println("Something went wrong while creating online players: " + e);
+        }
     }
 
     public void connectionClose(){

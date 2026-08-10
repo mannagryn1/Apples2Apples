@@ -20,15 +20,20 @@ public class JudgePhase extends GamePhase {
         }
 
         stateObject.playerGet(stateObject.judgeIDGet()).judge(stateObject.playedApplesGet(), stateObject);
+        // tells player w judgeID to run judge() w input playedApples and stateObject
         
         PlayedApple winningApple = stateObject.winningRedGet();
         
         stateObject.playerGet(winningApple.PlayerID).addWonApple(winningApple.redApple);
 
-        System.out.println("\nThe winning apple this round was " + winningApple.redApple);
+        for (int i = 0 ; i < stateObject.getNumberOfPlayers() ; i++){
+            stateObject.playerGet(i).presentWinningApple(winningApple);
+        }
 
         if (stateObject.playerGet(winningApple.PlayerID).numberOfWonApples() >= stateObject.winconGet()){
-            System.out.println("Player " + winningApple.PlayerID + " has won the game!");
+            for (int i = 0 ; i < stateObject.getNumberOfPlayers() ; i++){
+                stateObject.playerGet(i).presentWinner(winningApple.PlayerID);
+            }
             stateObject.gameEndedSetTrue();
         }
     }
