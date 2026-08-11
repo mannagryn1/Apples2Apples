@@ -46,7 +46,7 @@ public class LocalPlayer extends Player {
             apples.add(apple);
         }
         catch (Exception e){
-            System.out.println("Something went wrong while playing a card");
+            System.out.println("Something went wrong while LocalPlayer played a card" + e);
         }
     }   
 
@@ -81,14 +81,14 @@ public class LocalPlayer extends Player {
 
             System.out.println("\nYou selected the card '" + playedApples.get(index-1).redApple + "' to win this round");
     //        System.out.println("**********************************************************************");
-            stateObject.winningRedSet(playedApples.get(index));
+            stateObject.winningRedSet(playedApples.get(index-1));
         }
         catch (Exception e){
             System.out.println("Something went wrong while judging");
         }
    }
 
-   @Override public void playerXIsJudging(int i){
+   @Override public void presentJudge(int i){
     System.out.println("**********************************************************************");
     System.out.println("Player " + i + " is judging!");
    }

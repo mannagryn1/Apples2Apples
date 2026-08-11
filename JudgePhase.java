@@ -11,7 +11,7 @@ public class JudgePhase extends GamePhase {
                 continue;
             }
             else {
-                stateObject.playerGet(i).playerXIsJudging(stateObject.judgeIDGet());
+                stateObject.playerGet(i).presentJudge(stateObject.judgeIDGet());
             }
         }
 

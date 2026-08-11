@@ -24,6 +24,10 @@ abstract class Player {
         hand.add(card);
     }
 
+    public void setHand(ArrayList<String> newHand){
+        this.hand=newHand;
+    }
+
     public void addWonApple(String apple){
         wonApples.add(apple);
     }
@@ -43,7 +47,7 @@ abstract class Player {
     public void judge(ArrayList<PlayedApple> playedApples, StateObject stateObject){
     }
 
-    public void playerXIsJudging(int i){
+    public void presentJudge(int i){
         
     }
 
