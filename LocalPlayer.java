@@ -13,7 +13,7 @@ public class LocalPlayer extends Player {
         try{
             BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
             
-            System.out.println("**********************************************************************");
+    System.out.println("\n**********************************************************************\n");
             System.out.println("Your hand is: ");
 
             boolean validCardSelected = false;
@@ -52,7 +52,7 @@ public class LocalPlayer extends Player {
 
     @Override public void judge(ArrayList<PlayedApple> playedApples, StateObject stateObject){
 
-        System.out.println("**********************************************************************");
+     System.out.println("\n**********************************************************************\n");
         System.out.println("You are the judge!");
 
         boolean checkValidInput = false;
@@ -89,12 +89,12 @@ public class LocalPlayer extends Player {
    }
 
    @Override public void presentJudge(int i){
-    System.out.println("**********************************************************************");
+    System.out.println("\n**********************************************************************\n");
     System.out.println("Player " + i + " is judging!");
    }
 
    @Override public void presentPlayedApples(ArrayList<PlayedApple> apples){
-    System.out.println("**********************************************************************");
+    System.out.println("\n**********************************************************************\n");
     System.out.println("The played apples this round were: ");
     for (int i = 0 ; i < apples.size() ; i++){
         System.out.println("(" + (i+1) + ")    " + apples.get(i).redApple);
@@ -102,16 +102,18 @@ public class LocalPlayer extends Player {
    }
 
    @Override public void presentGreenApple(String apple){
-    System.out.println("**********************************************************************");
+    System.out.println("\n**********************************************************************\n");
     System.out.println("This round's green apple is: " + apple);
     
    }
 
    @Override public void presentWinningApple(PlayedApple winningRed){
-    System.out.println("The winning apple this round was " + winningRed.redApple + ". It was played by Player " + winningRed.PlayerID);
+    System.out.println("\nThe winning apple this round was " + winningRed.redApple + ". It was played by Player " + winningRed.PlayerID);
    }
 
    @Override public void presentWinner(int winnerID){
+    System.out.println("\n**********************************************************************\n");
     System.out.println("Player " + winnerID + " has won the game!");
+    System.out.println("\n**********************************************************************\n");
    }
 }

@@ -74,10 +74,12 @@ public class OnlinePlayer extends Player {
 
     @Override public void presentPlayedApples(ArrayList<PlayedApple> apples){
         try{
+            out.writeBytes("emptyPlayedApples!!\n");
             for (int i = 0 ; i < apples.size() ; i++){
-                String card = ("playedCard!!");
+                String card = ("playedCard!!"+apples.get(i).redApple);
                 out.writeBytes(card + "\n");
             }
+            out.writeBytes("presentPlayedApples!!\n");
         }
         catch(Exception e){
             System.out.println("Something went wrong while sending played cards " + e);
