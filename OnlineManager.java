@@ -22,7 +22,7 @@ public class OnlineManager {
                 Socket socket = connection.accept();
                 BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
                 DataOutputStream out = new DataOutputStream(socket.getOutputStream());
-                OnlinePlayer player = new OnlinePlayer(stateObject.getNumberOfPlayers(), in, out);
+                OnlinePlayer player = new OnlinePlayer(i, in, out);
                 stateObject.playersAdd(player);
             }
         }

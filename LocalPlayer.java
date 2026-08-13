@@ -61,7 +61,7 @@ public class LocalPlayer extends Player {
         try{
             BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
             while(!checkValidInput){
-                System.out.println("\nPlease select which card should win this round by typing a nunmber");
+                System.out.println("\nPlease select which card should win this round by typing a number");
 
                 input = br.readLine();
 
