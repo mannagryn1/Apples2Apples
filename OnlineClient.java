@@ -59,7 +59,6 @@ public class OnlineClient {
 
                     while (this.hand.size() > 0){
                         this.hand.remove(0);        //cleans up local hand in preparation for next round
-                        player.removeCardFromHand(0);
                     }
                     break;
                 case "card":
@@ -70,7 +69,7 @@ public class OnlineClient {
                     StateObject stateObject = new StateObject(null, null);
                     player.judge(this.playedApples, stateObject);
                     int output = stateObject.winningRedGet().PlayerID;
-                    out.writeInt(output);
+                    out.writeBytes(output + "\n");
                     break;
                 case "presentJudge":
                     int judgeID = Integer.parseInt(split[1]);
