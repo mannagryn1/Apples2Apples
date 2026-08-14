@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.List;
 
 abstract class Player {
     protected int playerID;
@@ -40,7 +41,7 @@ abstract class Player {
         hand.remove(card);
     }
 
-    public void play(ArrayList<PlayedApple> apples){
+    public void play(List<PlayedApple> apples){
 
     }
 

@@ -1,5 +1,6 @@
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class BotPlayer extends Player {
 
@@ -7,7 +8,7 @@ public class BotPlayer extends Player {
         super(playerID);
     }
     
-    @Override public void play(ArrayList<PlayedApple> apples){
+    @Override public void play(List<PlayedApple> apples){
         String card = hand.get(0);
         removeCardFromHand(0);
         PlayedApple apple = new PlayedApple(playerID, card);

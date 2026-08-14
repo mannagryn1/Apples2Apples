@@ -2,6 +2,7 @@
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.List;
 
 public class LocalPlayer extends Player {
     
@@ -9,7 +10,7 @@ public class LocalPlayer extends Player {
         super(playerID);
     }
 
-    @Override public void play(ArrayList<PlayedApple> apples){
+    @Override public void play(List<PlayedApple> apples){
         try{
             BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
             

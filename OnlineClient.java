@@ -3,6 +3,7 @@ import java.io.DataOutputStream;
 import java.io.InputStreamReader;
 import java.net.Socket;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class OnlineClient {
@@ -40,14 +41,15 @@ public class OnlineClient {
     public void gameLoop(){
         while(!gameEnded){
         try{
-            System.out.println("Waiting");
+            //System.out.println("Waiting");
             String input = in.readLine();
-            String split[] = input.split("!");
+            String split[] = input.split("#");
 
             switch (split[0]){
                 case "play":
                     player.setHand(hand);
-                    ArrayList<PlayedApple> apple = new ArrayList<PlayedApple>();
+                    //ArrayList<PlayedApple> apple = new ArrayList<PlayedApple>();
+                    List<PlayedApple> apple = new ArrayList<PlayedApple>() {};
                     player.play(apple);
                     int index = -1;         // Initializes variable but making sure if something goes wrong in coming loop there will still be an error
                     for(int i = 0 ; i < this.hand.size() ; i++){
@@ -63,7 +65,7 @@ public class OnlineClient {
                     break;
                 case "card":
                     this.hand.add(split[1]);
-                    System.out.println("trace: client card = " + this.hand.get(this.hand.size()-1));
+                    //System.out.println("trace: client card = " + this.hand.get(this.hand.size()-1));
                     break;
                 case "judge":
                     StateObject stateObject = new StateObject(null, null);
@@ -92,15 +94,24 @@ public class OnlineClient {
                     player.presentWinner(winnerID);
                     this.gameEnded = true;
                     break;
+                case "winningApple":
+                    int appleID = Integer.parseInt(split[2]);
+                    String winningRed = split[1];
+                    PlayedApple winningApple = new PlayedApple(appleID, winningRed);
+                    player.presentWinningApple(winningApple);
+                    break;
+                    case "greenApple":
+                        player.presentGreenApple(split[1]);
+                        break;
                 default:
-                    System.out.println("ahhhhhhhhhhhhhhhhhhhhhhhhhhhhh");
+                    System.out.println("this wasnt supposed to happen... " + split[1]);
             }
         }
         catch(Exception e){
             System.out.println("Soemthing wewnt wrong in the gameloop " + e);
         }
 
-        System.out.println("trace: plsplsplsplspls");
+        //System.out.println("trace: plsplsplsplspls");
     }
     }
 }
