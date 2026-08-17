@@ -1,7 +1,8 @@
+package src;
 import java.util.ArrayList;
 import java.util.List;
 
-abstract class Player {
+public abstract class Player {
     protected int playerID;
     protected ArrayList<String> hand;
     protected ArrayList<String> wonApples;
@@ -66,5 +67,13 @@ abstract class Player {
 
     public void presentWinner(int playerID){
 
+    }
+
+    public ArrayList<String> wonApplesGet(){
+        return this.wonApples;
+    }
+
+    public int playerIDGet() {
+        return this.playerID;
     }
 }

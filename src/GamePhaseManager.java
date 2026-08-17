@@ -1,14 +1,15 @@
+package src;
 
 public class GamePhaseManager {
 
-    StateObject stateObject;
-    DeckOfCards redApples;
-    DeckOfCards greenApples;
-    StartupPhase startupPhase;
-    RoundStartPhase roundStartPhase;
-    RoundEndPhase roundEndPhase;
-    JudgePhase judgePhase;
-    PlayPhase playPhase;
+    public StateObject stateObject;
+    public DeckOfCards redApples;
+    public DeckOfCards greenApples;
+    public StartupPhase startupPhase;
+    public RoundStartPhase roundStartPhase;
+    public RoundEndPhase roundEndPhase;
+    public JudgePhase judgePhase;
+    public PlayPhase playPhase;
 
 
     GamePhaseManager(StateObject stateObject){

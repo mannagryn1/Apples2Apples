@@ -1,3 +1,4 @@
+package src;
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -5,7 +6,7 @@ public class StartupPhase extends GamePhase {
 //created as class for consistency
 // Should create players, fill up with botplayers
 // give out hands, decide wincon etc.
-    @Override void execute(StateObject stateObject){
+    @Override public void execute(StateObject stateObject){
         while (stateObject.getNumberOfPlayers() < 4){
             stateObject.playersAdd(new BotPlayer(stateObject.getNumberOfPlayers())); //create botplayers until there are at least 4 players total
         }

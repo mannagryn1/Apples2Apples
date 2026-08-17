@@ -1,3 +1,4 @@
+package src;
 
 public class Server {
     StateObject stateObject;
@@ -5,7 +6,7 @@ public class Server {
     int numberOfOnlinePlayers;
    // OnlineManager onlineManager;
 
-    Server(int numberOfOnlinePlayers){
+    public Server(int numberOfOnlinePlayers){
         DeckOfCards redApples = new DeckOfCards("redApples.txt");
         DeckOfCards greenApples = new DeckOfCards("greenApples.txt");
         this.stateObject = new StateObject(greenApples, redApples);
@@ -29,5 +30,13 @@ public class Server {
     void createOnlinePlayers(int numberOfOnlinePlayers){
         OnlineManager onlineManager = new OnlineManager(2048);
         onlineManager.createOnlinePlayers(numberOfOnlinePlayers, stateObject); 
+    }
+
+    public StateObject stateObjectGet(){
+        return this.stateObject;
+    }
+
+    public GamePhaseManager GPMGet(){
+        return this.GPM;
     }
 }

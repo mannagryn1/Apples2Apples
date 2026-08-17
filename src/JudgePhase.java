@@ -1,7 +1,8 @@
+package src;
 public class JudgePhase extends GamePhase {
     // take input from judge, give winning apple to correct player, check against win condition
 
-    @Override void execute(StateObject stateObject){
+    @Override public void execute(StateObject stateObject){
 
         //System.out.println("**********************************************************************");
         //System.out.println("This rounds green apple was: " + stateObject.greenAppleGet());

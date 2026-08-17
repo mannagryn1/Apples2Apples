@@ -1,15 +1,16 @@
+package test;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import org.junit.jupiter.api.*;
-
-import java.lang.annotation.Target;
-import java.util.ArrayList;
+import src.DeckOfCards;
+import src.PlayedApple;
+import src.Player;
+import src.Server;
 
 public class tests {
 
     void testReadDecks(){       // REQ 1 and 2
         Server server = new Server(0);
-        DeckOfCards redApples = server.stateObject.redApplesGet();
-        DeckOfCards greenApples = server.stateObject.greenApplesGet();
+        DeckOfCards redApples = server.stateObjectGet().redApplesGet();
+        DeckOfCards greenApples = server.stateObjectGet().greenApplesGet();
 
         assertTrue(!(redApples.getDeck().isEmpty()));
         assertTrue(!(greenApples.getDeck().isEmpty()));
@@ -17,8 +18,8 @@ public class tests {
 
     void testshuffle(){         //REQ 3
         Server server = new Server(0);
-        DeckOfCards redShuffled = server.stateObject.redApplesGet();
-        DeckOfCards greenShuffled = server.stateObject.greenApplesGet();
+        DeckOfCards redShuffled = server.stateObjectGet().redApplesGet();
+        DeckOfCards greenShuffled = server.stateObjectGet().greenApplesGet();
 
         DeckOfCards redUnshuffled = new DeckOfCards("redApples.txt");
         DeckOfCards greenUnshuffled = new DeckOfCards("greenApples.txt");
@@ -46,12 +47,12 @@ public class tests {
 
     void testInitialDeal(){     //REQ 4
         Server server = new Server(0);
-        server.GPM.startupPhase.execute(server.stateObject);
+        server.GPMGet().startupPhase.execute(server.stateObjectGet());
 
         boolean allPlayersHave7Cards = true;
 
-        for (int i = 0 ; i < server.stateObject.getNumberOfPlayers() ; i++){
-            if ((server.stateObject.playerGet(i).getHand().size() != 7)){
+        for (int i = 0 ; i < server.stateObjectGet().getNumberOfPlayers() ; i++){
+            if ((server.stateObjectGet().playerGet(i).getHand().size() != 7)){
                 allPlayersHave7Cards = false;
             }
         }
@@ -63,13 +64,13 @@ public class tests {
         boolean differentJudges = false;
 
         Server firstServer = new Server(0);
-        firstServer.GPM.startupPhase.execute(firstServer.stateObject);
-        int firstJudge = firstServer.stateObject.judgeIDGet();
+        firstServer.GPMGet().startupPhase.execute(firstServer.stateObjectGet());
+        int firstJudge = firstServer.stateObjectGet().judgeIDGet();
 
         for (int i = 0 ; i < 100 ; i++){
             Server newServer = new Server(0);
-            newServer.GPM.startupPhase.execute(newServer.stateObject);
-            int newJudge = newServer.stateObject.judgeIDGet();
+            newServer.GPMGet().startupPhase.execute(newServer.stateObjectGet());
+            int newJudge = newServer.stateObjectGet().judgeIDGet();
 
             if (firstJudge != newJudge){
                 differentJudges = true;
@@ -83,9 +84,9 @@ public class tests {
 
     void testDrawGreenApple(){  //REQ 6
         Server server  = new Server(0);
-        server.GPM.roundStartPhase.execute(server.stateObject);
+        server.GPMGet().roundStartPhase.execute(server.stateObjectGet());
 
-        assertTrue(server.stateObject.greenAppleGet() != null);
+        assertTrue(server.stateObjectGet().greenAppleGet() != null);
         //stateObject.greenApple is initialized to null, so if it is not null after
         //we have run the roundStartPhase, it means a green apple has been dealt
         //and will be shown to everyone
@@ -93,10 +94,10 @@ public class tests {
 
     void testPlayRed(){         //REQ 7 and 9
         Server server = new Server(0);
-        server.GPM.startupPhase.execute(server.stateObject);
-        server.GPM.playPhase.execute(server.stateObject);
+        server.GPMGet().startupPhase.execute(server.stateObjectGet());
+        server.GPMGet().playPhase.execute(server.stateObjectGet());
 
-        boolean correctNumberOfPlayedApples = (server.stateObject.playedApplesGet().size() == (server.stateObject.getNumberOfPlayers() - 1));
+        boolean correctNumberOfPlayedApples = (server.stateObjectGet().playedApplesGet().size() == (server.stateObjectGet().getNumberOfPlayers() - 1));
 
         assertTrue(correctNumberOfPlayedApples);
         //there should be one played apple fewer than total number of players, as the judge does not play
@@ -104,17 +105,17 @@ public class tests {
 
     void testShufflePlayed(){   //REq 8
         Server server = new Server(0);
-        server.GPM.startupPhase.execute(server.stateObject);
-        server.GPM.playPhase.execute(server.stateObject);
+        server.GPMGet().startupPhase.execute(server.stateObjectGet());
+        server.GPMGet().playPhase.execute(server.stateObjectGet());
 
-        int firstPlayerID = server.stateObject.playedApplesGet().get(0).PlayerID;
+        int firstPlayerID = server.stateObjectGet().playedApplesGet().get(0).PlayerID;
         boolean notSameFirstPlayerID = false;
 
         for (int i = 0 ; i < 100 ; i++){
-            server.GPM.startupPhase.execute(server.stateObject);
-            server.GPM.playPhase.execute(server.stateObject);
+            server.GPMGet().startupPhase.execute(server.stateObjectGet());
+            server.GPMGet().playPhase.execute(server.stateObjectGet());
 
-            int newFirstPlayerID = server.stateObject.playedApplesGet().get(0).PlayerID;
+            int newFirstPlayerID = server.stateObjectGet().playedApplesGet().get(0).PlayerID;
 
             if(firstPlayerID != newFirstPlayerID){
                 notSameFirstPlayerID = true;
@@ -128,18 +129,18 @@ public class tests {
 
     void testJudging(){         //REQ 10 and 14
         Server server = new Server(0);
-        server.GPM.startupPhase.execute(server.stateObject);
-        server.GPM.playPhase.execute(server.stateObject);
-        server.GPM.judgePhase.execute(server.stateObject);
+        server.GPMGet().startupPhase.execute(server.stateObjectGet());
+        server.GPMGet().playPhase.execute(server.stateObjectGet());
+        server.GPMGet().judgePhase.execute(server.stateObjectGet());
 
-        assertTrue(server.stateObject.winningRedGet() != null); //initiated to null, if someone won it will no longer be null
+        assertTrue(server.stateObjectGet().winningRedGet() != null); //initiated to null, if someone won it will no longer be null
 
-        PlayedApple winningRed = server.stateObject.winningRedGet();
-        Player winningPlayer = server.stateObject.playerGet(winningRed.PlayerID);
+        PlayedApple winningRed = server.stateObjectGet().winningRedGet();
+        Player winningPlayer = server.stateObjectGet().playerGet(winningRed.PlayerID);
         
         boolean winningPlayerGotApple = false;
-        for (int i = 0 ; i < winningPlayer.wonApples.size() ; i++){
-            if (winningPlayer.wonApples.get(i) == winningRed.redApple){
+        for (int i = 0 ; i < winningPlayer.wonApplesGet().size() ; i++){
+            if (winningPlayer.wonApplesGet().get(i) == winningRed.redApple){
                 winningPlayerGotApple = true;
             }
         }
@@ -149,16 +150,17 @@ public class tests {
 
     void testDiscardAndNewDraw(){    //REQ 11 and 12
         Server server = new Server(0);
-        server.GPM.startupPhase.execute(server.stateObject);
-        server.GPM.roundStartPhase.execute(server.stateObject);
+        server.GPMGet().startupPhase.execute(server.stateObjectGet());
+        server.GPMGet().roundStartPhase.execute(server.stateObjectGet());
 
         boolean everyoneButJudgeHasPlayed = true;
+        int correctHandSize = 7;
 
-        for (int i = 0 ; i < server.stateObject.getNumberOfPlayers() ; i ++){
-            Player currentPlayer = server.stateObject.playerGet(i);
+        for (int i = 0 ; i < server.stateObjectGet().getNumberOfPlayers() ; i ++){
+            Player currentPlayer = server.stateObjectGet().playerGet(i);
 
-            if (currentPlayer.playerID != server.stateObject.judgeIDGet()){
-                if (currentPlayer.hand.size() != 6){
+            if (currentPlayer.playerIDGet() != server.stateObjectGet().judgeIDGet()){
+                if (currentPlayer.getHand().size() != (correctHandSize - 1)){
                     everyoneButJudgeHasPlayed = false;
                 }
             }
@@ -166,13 +168,13 @@ public class tests {
 
         assertTrue(everyoneButJudgeHasPlayed);
         //checks so that everyone who has played a card loses that card
-        server.GPM.roundEndPhase.execute(server.stateObject);
+        server.GPMGet().roundEndPhase.execute(server.stateObjectGet());
         boolean drawnNewCards = true;
 
-        for (int i = 0 ; i < server.stateObject.getNumberOfPlayers() ; i ++){
-            Player currentPlayer = server.stateObject.playerGet(i);
+        for (int i = 0 ; i < server.stateObjectGet().getNumberOfPlayers() ; i ++){
+            Player currentPlayer = server.stateObjectGet().playerGet(i);
 
-            if (currentPlayer.hand.size() != 7){
+            if (currentPlayer.getHand().size() != correctHandSize){
                 drawnNewCards = false;
             }
         }
@@ -183,19 +185,19 @@ public class tests {
 
     void testJudgeChange(){     //REQ 13
         Server server = new Server(0);
-        server.GPM.startupPhase.execute(server.stateObject);
-        int startingJudgeID = server.stateObject.judgeIDGet();
+        server.GPMGet().startupPhase.execute(server.stateObjectGet());
+        int startingJudgeID = server.stateObjectGet().judgeIDGet();
 
-        server.GPM.roundStartPhase.execute(server.stateObject);
-        int newJudgeID = server.stateObject.judgeIDGet();
+        server.GPMGet().roundStartPhase.execute(server.stateObjectGet());
+        int newJudgeID = server.stateObjectGet().judgeIDGet();
         boolean correctJudgeSwitch = false;
 
-        if(startingJudgeID < (server.stateObject.getNumberOfPlayers()-1)){
+        if(startingJudgeID < (server.stateObjectGet().getNumberOfPlayers()-1)){
             if(newJudgeID == (startingJudgeID + 1)){
                 correctJudgeSwitch = true;
             }
         }
-        else if(startingJudgeID == (server.stateObject.getNumberOfPlayers()-1)){
+        else if(startingJudgeID == (server.stateObjectGet().getNumberOfPlayers()-1)){
             if(newJudgeID == 0){
                 correctJudgeSwitch = true;
             }
@@ -206,6 +208,8 @@ public class tests {
     }
     
     void testWinCon(){
+        int minimumNumberOfPlayers = 4;
+        Server server = new Server(0);
         
     }
 }

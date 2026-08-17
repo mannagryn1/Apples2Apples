@@ -1,3 +1,4 @@
+package src;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -9,7 +10,7 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class PlayPhase extends GamePhase {
 
-        @Override void execute(StateObject stateObject){
+        @Override public void execute(StateObject stateObject){
             ExecutorService threadpool = Executors.newFixedThreadPool(stateObject.getNumberOfPlayers());
 
             List<PlayedApple> playedApplesMutex;
