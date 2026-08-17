@@ -29,4 +29,8 @@ public class DeckOfCards {
         this.deck.remove(0);
         return card;
     }
+
+    public ArrayList<String> getDeck(){
+        return this.deck;
+    }
 }
