@@ -1,5 +1,10 @@
 package test;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import org.junit.jupiter.api.*;
+
+import java.util.concurrent.ThreadLocalRandom;
+
+import src.BotPlayer;
 import src.DeckOfCards;
 import src.PlayedApple;
 import src.Player;
@@ -83,16 +88,17 @@ public class tests {
     }
 
     void testDrawGreenApple(){  //REQ 6
+        //stateObject.greenApple is initialized to null, so if it is not null after
+        //we have run the roundStartPhase, it means a green apple has been dealt
+        //and will be shown to everyone
         Server server  = new Server(0);
         server.GPMGet().roundStartPhase.execute(server.stateObjectGet());
 
         assertTrue(server.stateObjectGet().greenAppleGet() != null);
-        //stateObject.greenApple is initialized to null, so if it is not null after
-        //we have run the roundStartPhase, it means a green apple has been dealt
-        //and will be shown to everyone
     }
 
     void testPlayRed(){         //REQ 7 and 9
+        //there should be one played apple fewer than total number of players, as the judge does not play
         Server server = new Server(0);
         server.GPMGet().startupPhase.execute(server.stateObjectGet());
         server.GPMGet().playPhase.execute(server.stateObjectGet());
@@ -100,7 +106,6 @@ public class tests {
         boolean correctNumberOfPlayedApples = (server.stateObjectGet().playedApplesGet().size() == (server.stateObjectGet().getNumberOfPlayers() - 1));
 
         assertTrue(correctNumberOfPlayedApples);
-        //there should be one played apple fewer than total number of players, as the judge does not play
     }
 
     void testShufflePlayed(){   //REq 8
@@ -159,6 +164,7 @@ public class tests {
         for (int i = 0 ; i < server.stateObjectGet().getNumberOfPlayers() ; i ++){
             Player currentPlayer = server.stateObjectGet().playerGet(i);
 
+            //checks so that everyone who has played a card loses that card            
             if (currentPlayer.playerIDGet() != server.stateObjectGet().judgeIDGet()){
                 if (currentPlayer.getHand().size() != (correctHandSize - 1)){
                     everyoneButJudgeHasPlayed = false;
@@ -167,10 +173,11 @@ public class tests {
         }
 
         assertTrue(everyoneButJudgeHasPlayed);
-        //checks so that everyone who has played a card loses that card
+
         server.GPMGet().roundEndPhase.execute(server.stateObjectGet());
         boolean drawnNewCards = true;
 
+        //checks so that at the end of every round, everyone has 7 cards again
         for (int i = 0 ; i < server.stateObjectGet().getNumberOfPlayers() ; i ++){
             Player currentPlayer = server.stateObjectGet().playerGet(i);
 
@@ -180,10 +187,11 @@ public class tests {
         }
 
         assertTrue(drawnNewCards);
-        //checks so that at the end of every round, everyone has 7 cards again
+        
     }
 
     void testJudgeChange(){     //REQ 13
+        //who is judge is iterated in roundStartPhase, so if it has changed correctly after that phase has run, it works as it should
         Server server = new Server(0);
         server.GPMGet().startupPhase.execute(server.stateObjectGet());
         int startingJudgeID = server.stateObjectGet().judgeIDGet();
@@ -204,12 +212,42 @@ public class tests {
         }
 
         assertTrue(correctJudgeSwitch);
-        //who is judge is iterated in roundStartPhase, so if it has changed correctly after that phase has run, it works as it should
+
     }
     
     void testWinCon(){
         int minimumNumberOfPlayers = 4;
-        Server server = new Server(0);
-        
+        int maximumNumberOfPlayers = 15;
+
+        for (int i = 0 ; i < 20 ; i++){
+            Server server = new Server(0);
+            int randomNumberOfPlayers = ThreadLocalRandom.current().nextInt(minimumNumberOfPlayers, maximumNumberOfPlayers + 1);
+
+            for (int j = 0 ; j < randomNumberOfPlayers ; j++){
+                Player player = new BotPlayer(j);
+                server.stateObjectGet().playersAdd(player);
+            }
+
+            server.GPMGet().startupPhase.execute(server.stateObjectGet());
+
+            int currentWinCondition = server.stateObjectGet().winconGet();
+
+            switch(server.stateObjectGet().getNumberOfPlayers()){
+            case 4:
+                assertTrue(currentWinCondition == 8);
+                break;
+            case 5:
+                assertTrue(currentWinCondition == 7);
+                break;
+            case 6:
+                assertTrue(currentWinCondition == 6);
+                break;
+            case 7:
+                assertTrue(currentWinCondition == 5);
+                break;
+            default:
+                assertTrue(currentWinCondition ==4);
+            }
+        }
     }
 }
