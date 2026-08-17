@@ -1,7 +1,6 @@
 package test;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import org.junit.jupiter.api.*;
-
+import org.junit.Test;
 import java.util.concurrent.ThreadLocalRandom;
 
 import src.BotPlayer;
@@ -11,8 +10,9 @@ import src.Player;
 import src.Server;
 
 public class tests {
-
-    void testReadDecks(){       // REQ 1 and 2
+    
+    @Test
+    public void testReadDecks(){       // REQ 1 and 2
         Server server = new Server(0);
         DeckOfCards redApples = server.stateObjectGet().redApplesGet();
         DeckOfCards greenApples = server.stateObjectGet().greenApplesGet();
@@ -21,7 +21,8 @@ public class tests {
         assertTrue(!(greenApples.getDeck().isEmpty()));
     }
 
-    void testshuffle(){         //REQ 3
+    @Test
+    public void testshuffle(){         //REQ 3
         Server server = new Server(0);
         DeckOfCards redShuffled = server.stateObjectGet().redApplesGet();
         DeckOfCards greenShuffled = server.stateObjectGet().greenApplesGet();
@@ -50,7 +51,8 @@ public class tests {
         assertTrue(!redMatch);
     }
 
-    void testInitialDeal(){     //REQ 4
+    @Test
+    public void testInitialDeal(){     //REQ 4
         Server server = new Server(0);
         server.GPMGet().startupPhase.execute(server.stateObjectGet());
 
@@ -65,7 +67,8 @@ public class tests {
         assertTrue(allPlayersHave7Cards);
     }
 
-    void testJudgeRandom(){     //REQ 5
+    @Test
+    public void testJudgeRandom(){     //REQ 5
         boolean differentJudges = false;
 
         Server firstServer = new Server(0);
@@ -87,7 +90,8 @@ public class tests {
         //It is random who is judge, and thus this test might fail, but because we try 100 times, it should be fine
     }
 
-    void testDrawGreenApple(){  //REQ 6
+    @Test
+    public void testDrawGreenApple(){  //REQ 6
         //stateObject.greenApple is initialized to null, so if it is not null after
         //we have run the roundStartPhase, it means a green apple has been dealt
         //and will be shown to everyone
@@ -97,7 +101,8 @@ public class tests {
         assertTrue(server.stateObjectGet().greenAppleGet() != null);
     }
 
-    void testPlayRed(){         //REQ 7 and 9
+    @Test
+    public void testPlayRed(){         //REQ 7 and 9
         //there should be one played apple fewer than total number of players, as the judge does not play
         Server server = new Server(0);
         server.GPMGet().startupPhase.execute(server.stateObjectGet());
@@ -108,7 +113,8 @@ public class tests {
         assertTrue(correctNumberOfPlayedApples);
     }
 
-    void testShufflePlayed(){   //REq 8
+    @Test
+    public void testShufflePlayed(){   //REq 8
         Server server = new Server(0);
         server.GPMGet().startupPhase.execute(server.stateObjectGet());
         server.GPMGet().playPhase.execute(server.stateObjectGet());
@@ -132,7 +138,8 @@ public class tests {
 
     // REQ 9 is already tested in testPlayRed()
 
-    void testJudging(){         //REQ 10 and 14
+    @Test
+    public void testJudging(){         //REQ 10 and 14
         Server server = new Server(0);
         server.GPMGet().startupPhase.execute(server.stateObjectGet());
         server.GPMGet().playPhase.execute(server.stateObjectGet());
@@ -153,7 +160,8 @@ public class tests {
         assertTrue(winningPlayerGotApple);
     }
 
-    void testDiscardAndNewDraw(){    //REQ 11 and 12
+    @Test
+    public void testDiscardAndNewDraw(){    //REQ 11 and 12
         Server server = new Server(0);
         server.GPMGet().startupPhase.execute(server.stateObjectGet());
         server.GPMGet().roundStartPhase.execute(server.stateObjectGet());
@@ -190,7 +198,8 @@ public class tests {
         
     }
 
-    void testJudgeChange(){     //REQ 13
+    @Test
+    public void testJudgeChange(){     //REQ 13
         //who is judge is iterated in roundStartPhase, so if it has changed correctly after that phase has run, it works as it should
         Server server = new Server(0);
         server.GPMGet().startupPhase.execute(server.stateObjectGet());
@@ -214,8 +223,9 @@ public class tests {
         assertTrue(correctJudgeSwitch);
 
     }
-    
-    void testWinCon(){
+
+    @Test    
+    public void testWinCon(){
         int minimumNumberOfPlayers = 4;
         int maximumNumberOfPlayers = 15;
 

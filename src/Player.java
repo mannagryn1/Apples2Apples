@@ -27,7 +27,7 @@ public abstract class Player {
     }
 
     public void setHand(ArrayList<String> newHand){
-        this.hand=(ArrayList)newHand.clone();
+        this.hand = (ArrayList)newHand.clone();
     }
 
     public void addWonApple(String apple){
