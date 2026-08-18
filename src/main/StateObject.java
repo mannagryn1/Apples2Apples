@@ -18,6 +18,9 @@ public class StateObject {
     private ArrayList<PlayedApple> playedApples;
     private int wincon;
 
+    //used to send various data between all the phases
+    //this way, all phases can have the same input, and not return anything in particular, and can therefore be more uniform from the outside looking in
+
     public StateObject(DeckOfCards greenApples, DeckOfCards redApples){
         this.greenApple = null;
         this.greenApples = greenApples;
@@ -30,88 +33,92 @@ public class StateObject {
         this.playedApples = null;
         this.wincon = -1;
     }
-    
-    public void greenAppleSet(String greenApple){
-        this.greenApple = greenApple;
-    }
 
-    public String greenAppleGet(){
+    // -------Getters------- //
+
+    public String greenAppleGet() { //returns this rounds green apple
         return this.greenApple;
     }
 
-    public DeckOfCards greenApplesGet(){
+    public DeckOfCards greenApplesGet() { //returns the deck of green apples
         return this.greenApples;
     }
 
-    public DeckOfCards redApplesGet(){
+    public DeckOfCards redApplesGet() { //returns deck of red apples
         return this.redApples;
     }
 
-    public void playedRedSet(PlayedApple playedRed){
-        this.playedRed = playedRed;
-    }
-
-    public PlayedApple playedRedGet(){
+    public PlayedApple playedRedGet() { //returns local players played red apple
         return this.playedRed;
     }
 
-    public void winningRedSet(PlayedApple winningRed){
-        this.winningRed = winningRed;
-    }
-
-    public PlayedApple winningRedGet(){
+    public PlayedApple winningRedGet() { //returns this rounds winning play
         return this.winningRed;
     }
 
-    public ArrayList<Player> playersGet(){
+    public ArrayList<Player> playersGet() { //returns arraylist containing all players
         return this.players;
     }
 
-    public int getNumberOfPlayers(){
+    public int getNumberOfPlayers() { //returns number of players in the game
         return this.players.size();
     }
 
-    public Player playerGet(int i){
+    public Player playerGet(int i) { //returns player with specified index. players are added in order, thus the index will also be the playerID
         return this.players.get(i);
     }
 
-    public void playersAdd(Player player){
-        this.players.add(player);
-    }
-
-    public boolean gameEndedGet(){
+    public boolean gameEndedGet() { //returns if the game has ended or not
         return gameEnded;
     }
 
-    public void gameEndedSetTrue(){
-        this.gameEnded = true;
-    }
-
-    public void gameEndedSetFalse(){
-        this.gameEnded = false;             //should never need to be used
-    }
-
-    public int judgeIDGet(){
+    public int judgeIDGet() { //gets playerID and index for this rounds judge
         return this.judgeID;
     }
 
-    public void judgeIDSet(int judgeID){
-        this.judgeID = judgeID;
-    }
-
-    public ArrayList<PlayedApple> playedApplesGet(){
+    public ArrayList<PlayedApple> playedApplesGet() { //returns all red apples played this round
         return this.playedApples;
     }
 
-    public void playedApplesSet(ArrayList<PlayedApple> playedApples){
+    public int winconGet() { //returns number of aplles won needed to win the game
+        return this.wincon;
+    }
+
+    // -------Setters------- //
+    
+    public void greenAppleSet(String greenApple) { //set this rounds green apple
+        this.greenApple = greenApple;
+    }
+ 
+    public void playedRedSet(PlayedApple playedRed) { //set localPlayers played red apple
+        this.playedRed = playedRed;
+    }
+
+    public void winningRedSet(PlayedApple winningRed) { //set this rounds winning red apple
+        this.winningRed = winningRed;
+    }
+
+    public void playersAdd(Player player) { //add Player to list of Players
+        this.players.add(player);
+    }
+
+    public void gameEndedSetTrue() { //set game ended to true
+        this.gameEnded = true;
+    }
+
+    public void gameEndedSetFalse() {
+        this.gameEnded = false;             //should never need to be used, here for completeness
+    }
+
+    public void judgeIDSet(int judgeID) { //set to ID of player who is judge this round
+        this.judgeID = judgeID;
+    }
+
+    public void playedApplesSet(ArrayList<PlayedApple> playedApples) { 
         this.playedApples = playedApples;
     }
 
-    public void winconSet(int wincon){
-        this.wincon = wincon;
-    }
-
-    public int winconGet(){
-        return this.wincon;
+    public void winconSet(int winCondition) { //set how many round wins are needed to win the game
+        this.wincon = winCondition;
     }
 }

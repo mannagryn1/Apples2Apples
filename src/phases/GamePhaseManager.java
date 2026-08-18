@@ -15,7 +15,7 @@ public class GamePhaseManager {
     public PlayPhase playPhase;
 
 
-    public GamePhaseManager(StateObject stateObject){
+    public GamePhaseManager(StateObject stateObject) {
         this.stateObject = stateObject;
         this.startupPhase = new StartupPhase();
         this.roundStartPhase = new RoundStartPhase();
@@ -24,10 +24,10 @@ public class GamePhaseManager {
         this.playPhase = new PlayPhase();
     }
 
-    public void mainLoop(){
+    public void mainLoop() {
         startupPhase.execute(stateObject);
 
-        while(!stateObject.gameEndedGet()){
+        while(!stateObject.gameEndedGet()) {
             roundStartPhase.execute(stateObject);
             playPhase.execute(stateObject);
             judgePhase.execute(stateObject);

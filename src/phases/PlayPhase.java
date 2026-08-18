@@ -14,14 +14,14 @@ import src.players.Player;
 
 public class PlayPhase extends GamePhase {
 
-        @Override public void execute(StateObject stateObject){
+        @Override public void execute(StateObject stateObject) {
             ExecutorService threadpool = Executors.newFixedThreadPool(stateObject.getNumberOfPlayers());
 
-            List<PlayedApple> playedApplesMutex;
+            List<PlayedApple> playedApplesMutex;                                    //use a mutex list to let players play their cards at the same time, and not have to wait for the person before them to pick before being shown their hand/prompted to play a card
             playedApplesMutex = Collections.synchronizedList(new ArrayList<>());
 
-            for (int i = 0 ; i < stateObject.getNumberOfPlayers() ; i++){
-                if (!(stateObject.judgeIDGet() == i)){
+            for (int i = 0 ; i < stateObject.getNumberOfPlayers() ; i++) {
+                if (!(stateObject.judgeIDGet() == i)) {
 
                     Player currentPlayer = stateObject.playerGet(i);
 
@@ -45,9 +45,12 @@ public class PlayPhase extends GamePhase {
 
             ArrayList<PlayedApple> playedApples = new ArrayList<>(playedApplesMutex);
             Random rnd = ThreadLocalRandom.current();
-            for(int i = playedApples.size() -1 ; i > 0 ; i--) {
+            
+            for(int i = playedApples.size() -1 ; i > 0 ; i--) {  //shuffle areound the order of the played cards
 				int index = rnd.nextInt(i+1);
-				PlayedApple a = playedApples.get(index); playedApples.set(index, playedApples.get(i)); playedApples.set(i, a); // SWAP
+				PlayedApple a = playedApples.get(index); 
+                playedApples.set(index, playedApples.get(i)); 
+                playedApples.set(i, a); // SWAP
 			}
 
 

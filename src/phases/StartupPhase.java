@@ -9,12 +9,15 @@ public class StartupPhase extends GamePhase {
 //created as class for consistency
 // Should create players, fill up with botplayers
 // give out hands, decide wincon etc.
-    @Override public void execute(StateObject stateObject){
-        while (stateObject.getNumberOfPlayers() < 4){
+
+private int minimumNumberOfPlayers = 4;
+
+    @Override public void execute(StateObject stateObject) {
+        while (stateObject.getNumberOfPlayers() < minimumNumberOfPlayers) {
             stateObject.playersAdd(new BotPlayer(stateObject.getNumberOfPlayers())); //create botplayers until there are at least 4 players total
         }
 
-        decideWincon(stateObject);      //decide how many won apples are neede to win based on amount of players
+        decideWincon(stateObject);      //decide how many won apples are needed to win based on amount of players
 
         stateObject.redApplesGet().shuffle();       //shuffle decks, must happen before drawing hands
         stateObject.greenApplesGet().shuffle();
@@ -32,7 +35,7 @@ public class StartupPhase extends GamePhase {
 
     }
 
-    private void decideWincon(StateObject stateObject){
+    private void decideWincon(StateObject stateObject){  //decide number of rounds won needed to win the game based on number of players in the game. Numbers lifted from the rules of the game
         switch(stateObject.getNumberOfPlayers()){
             case 4:
                 stateObject.winconSet(8);
@@ -47,7 +50,7 @@ public class StartupPhase extends GamePhase {
                 stateObject.winconSet(5);
                 break;
             default:
-                stateObject.winconSet(4);
+                stateObject.winconSet(4);  //wincondition for 8 or more players
         }
     }
     

@@ -10,18 +10,18 @@ import src.players.OnlinePlayer;
 public class OnlineManager {
     ServerSocket connection;
 
-    public OnlineManager(int ServerSocket){
+    public OnlineManager(int ServerSocket) {
         try{
             this.connection = new ServerSocket(ServerSocket);
         }
-        catch (Exception e){
+        catch (Exception e) {
             System.out.println("Something went wrong while connecting: " + e);
         }
     }
 
-    public void createOnlinePlayers(int numberOfOnlinePlayers, StateObject stateObject){
+    public void createOnlinePlayers(int numberOfOnlinePlayers, StateObject stateObject) {
         try{
-            for (int i =1; i <= numberOfOnlinePlayers ; i++){
+            for (int i =1; i <= numberOfOnlinePlayers ; i++) { //create everything needed for the number of online players specified
                 Socket socket = connection.accept();
                 BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
                 DataOutputStream out = new DataOutputStream(socket.getOutputStream());
@@ -29,16 +29,16 @@ public class OnlineManager {
                 stateObject.playersAdd(player);
             }
         }
-        catch(Exception e){
+        catch(Exception e) {
             System.out.println("Something went wrong while creating online players: " + e);
         }
     }
 
-    public void connectionClose(){
+    public void connectionClose() {
         try {
             connection.close();
         }
-        catch(Exception e){
+        catch(Exception e) {
             System.out.println("Something went wrong while closing the server");
         }
     }

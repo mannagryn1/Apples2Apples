@@ -4,9 +4,11 @@ import src.main.StateObject;
 
 public class GamePhase {
 
-    public void execute(StateObject stateObject){
+    public void execute(StateObject stateObject) {
         //Exists solely for consistency at this point in time
         //but because it exists it would be very simple to implement 
         //commonality between various phases should one wish
+
+        //also to make it easy to add more phases
     }
 }

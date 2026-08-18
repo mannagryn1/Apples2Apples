@@ -9,70 +9,72 @@ public abstract class Player {
     protected int playerID;
     protected ArrayList<String> hand;
     protected ArrayList<String> wonApples;
-    protected boolean judge;
 
-    public Player(int playerID){
+    //An abstract class, so that all kinds of players (local, online, and bot) can be added to the same lists and iterated over, as well have the same methods called on them as needed. makes it easier everywhere else
+
+
+    public Player(int playerID) {
         this.playerID = playerID;
         this.hand = new ArrayList<String>();
         this.wonApples = new ArrayList<String>();
     }
 
-    public int getPlayerID(){
+    public int getPlayerID() {
         return playerID;
     }
 
-    public ArrayList<String> getHand(){
+    public ArrayList<String> getHand() {
         return hand;
     }
 
-    public void drawCard(String card){
-        hand.add(card);
+    public void drawCard(String card) {
+        hand.add(card); 
     }
 
-    public void setHand(ArrayList<String> newHand){
+    public void setHand(ArrayList<String> newHand) {
         this.hand = (ArrayList)newHand.clone();
     }
 
-    public void addWonApple(String apple){
+    public void addWonApple(String apple) {
         wonApples.add(apple);
     }
 
-    public int numberOfWonApples(){
+    public int numberOfWonApples() {
         return wonApples.size();
     }
 
-    public void removeCardFromHand(int card){
+    public void removeCardFromHand(int card) {
         hand.remove(card);
     }
 
-    public void play(List<PlayedApple> apples){
+    public void play(List<PlayedApple> apples) {
 
     }
 
-    public void judge(ArrayList<PlayedApple> playedApples, StateObject stateObject){
+    public void judge(ArrayList<PlayedApple> playedApples, StateObject stateObject) {
     }
 
-    public void presentJudge(int i){
+    public void presentJudge(int i) {
         
     }
 
-    public void presentPlayedApples(ArrayList<PlayedApple> playedApples){
+    public void presentPlayedApples(ArrayList<PlayedApple> playedApples) {
 
     }
 
-    public void presentGreenApple(String greenApple){
+    public void presentGreenApple(String greenApple) {
 
     }
 
-    public void presentWinningApple(PlayedApple winningRed){
+    public void presentWinningApple(PlayedApple winningRed) {
 
     }
 
-    public void presentWinner(int playerID){
+    public void presentWinner(int playerID) {
 
     }
 
-    public ArrayList<String> wonApplesGet(){
+    public ArrayList<String> wonApplesGet() {
         return this.wonApples;
     }
 

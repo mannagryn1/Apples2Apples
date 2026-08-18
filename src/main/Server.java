@@ -9,9 +9,10 @@ public class Server {
     StateObject stateObject;
     GamePhaseManager GPM;
     int numberOfOnlinePlayers;
+    int serversocket = 2048;
    // OnlineManager onlineManager;
 
-    public Server(int numberOfOnlinePlayers){
+    public Server(int numberOfOnlinePlayers) {
         DeckOfCards redApples = new DeckOfCards("redApples.txt");
         DeckOfCards greenApples = new DeckOfCards("greenApples.txt");
         this.stateObject = new StateObject(greenApples, redApples);
@@ -19,29 +20,29 @@ public class Server {
         this.numberOfOnlinePlayers = numberOfOnlinePlayers;
     }
 
-    public void start(){
+    public void start() {
         createHostPlayer();
-        if(numberOfOnlinePlayers > 0){
+        if(numberOfOnlinePlayers > 0) {
             createOnlinePlayers(numberOfOnlinePlayers);
         }
         GPM.mainLoop();
     }
 
-    void createHostPlayer(){
+    void createHostPlayer() {
         Player hostPlayer = new LocalPlayer(0);
         stateObject.playersAdd(hostPlayer);
     }
 
-    void createOnlinePlayers(int numberOfOnlinePlayers){
-        OnlineManager onlineManager = new OnlineManager(2048);
+    void createOnlinePlayers(int numberOfOnlinePlayers) {
+        OnlineManager onlineManager = new OnlineManager(serversocket);
         onlineManager.createOnlinePlayers(numberOfOnlinePlayers, stateObject); 
     }
 
-    public StateObject stateObjectGet(){
+    public StateObject stateObjectGet() {
         return this.stateObject;
     }
 
-    public GamePhaseManager GPMGet(){
+    public GamePhaseManager GPMGet() {
         return this.GPM;
     }
 }

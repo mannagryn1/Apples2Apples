@@ -16,7 +16,7 @@ public class main {
                 Server server = new Server(numberOfOnlinePlayers);
                 server.start();
             }
-            catch(Exception e){
+            catch(Exception e) {
                 System.out.println("Connecting to the host");
                 OnlineClient client = new OnlineClient(args[0], 2048);
                 client.gameLoop();
