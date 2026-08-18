@@ -1,5 +1,9 @@
-package src;
+package src.main;
 import java.util.ArrayList;
+
+import src.cards.DeckOfCards;
+import src.cards.PlayedApple;
+import src.players.Player;
 
 public class StateObject {
 

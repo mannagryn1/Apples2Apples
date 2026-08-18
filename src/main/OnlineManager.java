@@ -1,8 +1,10 @@
-package src;
+package src.main;
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.InputStreamReader;
 import java.net.*;
+
+import src.players.OnlinePlayer;
 
 
 public class OnlineManager {

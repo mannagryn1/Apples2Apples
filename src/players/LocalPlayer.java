@@ -1,9 +1,12 @@
-package src;
+package src.players;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
+
+import src.cards.PlayedApple;
+import src.main.StateObject;
 
 public class LocalPlayer extends Player {
     

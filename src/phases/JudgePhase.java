@@ -1,4 +1,8 @@
-package src;
+package src.phases;
+
+import src.cards.PlayedApple;
+import src.main.StateObject;
+
 public class JudgePhase extends GamePhase {
     // take input from judge, give winning apple to correct player, check against win condition
 

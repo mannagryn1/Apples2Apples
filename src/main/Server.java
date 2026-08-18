@@ -1,4 +1,9 @@
-package src;
+package src.main;
+
+import src.cards.DeckOfCards;
+import src.phases.GamePhaseManager;
+import src.players.LocalPlayer;
+import src.players.Player;
 
 public class Server {
     StateObject stateObject;

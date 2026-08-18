@@ -1,4 +1,7 @@
-package src;
+package src.phases;
+
+import src.main.StateObject;
+
 public class RoundStartPhase extends GamePhase {
     //switch judge, present new green
     @Override public void execute(StateObject stateObject){

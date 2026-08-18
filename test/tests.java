@@ -3,11 +3,11 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.Test;
 import java.util.concurrent.ThreadLocalRandom;
 
-import src.BotPlayer;
-import src.DeckOfCards;
-import src.PlayedApple;
-import src.Player;
-import src.Server;
+import src.cards.DeckOfCards;
+import src.cards.PlayedApple;
+import src.main.Server;
+import src.players.BotPlayer;
+import src.players.Player;
 
 public class tests {
     
@@ -165,6 +165,7 @@ public class tests {
         Server server = new Server(0);
         server.GPMGet().startupPhase.execute(server.stateObjectGet());
         server.GPMGet().roundStartPhase.execute(server.stateObjectGet());
+        server.GPMGet().playPhase.execute(server.stateObjectGet());
 
         boolean everyoneButJudgeHasPlayed = true;
         int correctHandSize = 7;
@@ -223,9 +224,9 @@ public class tests {
         assertTrue(correctJudgeSwitch);
 
     }
-
+                        //create random number of players, minimum 4, and check that the win condition gets initialized correctly
     @Test    
-    public void testWinCon(){
+    public void testWinCon(){       //REQ 14
         int minimumNumberOfPlayers = 4;
         int maximumNumberOfPlayers = 15;
 

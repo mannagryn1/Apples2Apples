@@ -1,4 +1,7 @@
-package src;
+package src.phases;
+
+import src.cards.DeckOfCards;
+import src.main.StateObject;
 
 public class GamePhaseManager {
 
@@ -12,7 +15,7 @@ public class GamePhaseManager {
     public PlayPhase playPhase;
 
 
-    GamePhaseManager(StateObject stateObject){
+    public GamePhaseManager(StateObject stateObject){
         this.stateObject = stateObject;
         this.startupPhase = new StartupPhase();
         this.roundStartPhase = new RoundStartPhase();

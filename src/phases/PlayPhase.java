@@ -1,4 +1,4 @@
-package src;
+package src.phases;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -7,6 +7,10 @@ import java.util.Random;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadLocalRandom;
+
+import src.cards.PlayedApple;
+import src.main.StateObject;
+import src.players.Player;
 
 public class PlayPhase extends GamePhase {
 

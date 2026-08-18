@@ -1,6 +1,9 @@
-package src;
+package src.phases;
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
+
+import src.main.StateObject;
+import src.players.BotPlayer;
 
 public class StartupPhase extends GamePhase {
 //created as class for consistency
@@ -17,7 +20,7 @@ public class StartupPhase extends GamePhase {
         stateObject.greenApplesGet().shuffle();
 
         for( int i = 0 ; i < stateObject.getNumberOfPlayers() ; i++){
-            while (stateObject.playerGet(i).hand.size() < 7){ //loop through all players and keep drawing until each have 7 cards on hand
+            while (stateObject.playerGet(i).getHand().size() < 7){ //loop through all players and keep drawing until each have 7 cards on hand
                 stateObject.playerGet(i).drawCard(stateObject.redApplesGet().drawCard());
             }
         }

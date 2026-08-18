@@ -1,4 +1,7 @@
-package src;
+package src.phases;
+
+import src.main.StateObject;
+
 public class RoundEndPhase extends GamePhase {
     //non-judge players draw cards
     @Override public void execute(StateObject stateObject){

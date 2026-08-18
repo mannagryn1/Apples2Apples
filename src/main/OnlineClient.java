@@ -1,4 +1,4 @@
-package src;
+package src.main;
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.InputStreamReader;
@@ -6,6 +6,9 @@ import java.net.Socket;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+
+import src.cards.PlayedApple;
+import src.players.LocalPlayer;
 
 public class OnlineClient {
     BufferedReader in;

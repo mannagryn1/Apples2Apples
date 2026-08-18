@@ -1,4 +1,6 @@
-package src;
+package src.phases;
+
+import src.main.StateObject;
 
 public class GamePhase {
 

@@ -1,8 +1,11 @@
-package src;
+package src.players;
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.util.ArrayList;
 import java.util.List;
+
+import src.cards.PlayedApple;
+import src.main.StateObject;
 
 public class OnlinePlayer extends Player {
 

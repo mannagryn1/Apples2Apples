@@ -1,7 +1,10 @@
-package src;
+package src.players;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import src.cards.PlayedApple;
+import src.main.StateObject;
 
 public class BotPlayer extends Player {
 

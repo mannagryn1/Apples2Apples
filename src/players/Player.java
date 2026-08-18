@@ -1,6 +1,9 @@
-package src;
+package src.players;
 import java.util.ArrayList;
 import java.util.List;
+
+import src.cards.PlayedApple;
+import src.main.StateObject;
 
 public abstract class Player {
     protected int playerID;
